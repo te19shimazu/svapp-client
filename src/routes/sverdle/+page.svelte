@@ -111,7 +111,7 @@
 {#if test_data.length > 0}
 	<ul>
 		{#each test_data as item}
-			<li>{item.someProperty}</li>
+			<li>{item}</li>
 		{/each}
 	</ul>
 {:else}
