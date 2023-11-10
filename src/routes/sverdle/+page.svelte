@@ -56,9 +56,7 @@
 	 */
 	function update(event: MouseEvent) {
 		const guess = data.guesses[i];
-		const key = (event.target as HTMLButtonElement).getAttribute(
-			'data-key'
-		);
+		const key = (event.target as HTMLButtonElement).getAttribute('data-key');
 
 		if (key === 'backspace') {
 			data.guesses[i] = guess.slice(0, -1);
@@ -79,6 +77,24 @@
 			.querySelector(`[data-key="${event.key}" i]`)
 			?.dispatchEvent(new MouseEvent('click', { cancelable: true }));
 	}
+
+	import { onMount } from 'svelte';
+
+	let test_data: string | any[] = [];
+
+	async function fetchData() {
+		try {
+			const response = await fetch('/api/posts/slug/comments');
+			if (!response.ok) {
+				throw new Error(`HTTP error! status: ${response.status}`);
+			}
+			test_data = await response.json();
+		} catch (e) {
+			console.error('APIからのデータの取得に失敗しました: ', e);
+		}
+	}
+
+	onMount(fetchData);
 </script>
 
 <svelte:window on:keydown={keydown} />
@@ -89,6 +105,16 @@
 </svelte:head>
 
 <h1 class="visually-hidden">Sverdle</h1>
+
+{#if test_data.length > 0}
+	<ul>
+		{#each test_data as item}
+			<li>{item.someProperty}</li>
+		{/each}
+	</ul>
+{:else}
+	<p>データを読み込んでいます...</p>
+{/if}
 
 <form
 	method="POST"
