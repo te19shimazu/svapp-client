@@ -80,7 +80,7 @@
 
 	import { onMount } from 'svelte';
 
-	let test_data: string | any[] = [];
+	let posts: string | any[] = [];
 
 	async function fetchData() {
 		try {
@@ -90,7 +90,7 @@
 			if (!response.ok) {
 				throw new Error(`HTTP error! status: ${response.status}`);
 			}
-			test_data = await response.json();
+			posts = await response.json();
 		} catch (e) {
 			console.error('APIからのデータの取得に失敗しました: ', e);
 		}
@@ -108,12 +108,17 @@
 
 <h1 class="visually-hidden">Sverdle</h1>
 
-{#if test_data.length > 0}
-	<ul>
-		{#each test_data as item}
-			<li>{item}</li>
+{#if posts.length > 0}
+	<div>
+		{#each posts as post}
+			<div>
+				<h3>ID: {post.id}</h3>
+				<p>Author: {post.author}</p>
+				<p>Body: {post.body}</p>
+				<p>Post Slug: {post.post_slug}</p>
+			</div>
 		{/each}
-	</ul>
+	</div>
 {:else}
 	<p>データを読み込んでいます...</p>
 {/if}
