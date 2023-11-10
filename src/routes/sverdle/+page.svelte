@@ -84,7 +84,9 @@
 
 	async function fetchData() {
 		try {
-			const response = await fetch('/api/posts/slug/comments');
+			const response = await fetch(
+				'https://crimson-sunset-1b57.hinaharu-0014.workers.dev/api/posts/slug/comments'
+			);
 			if (!response.ok) {
 				throw new Error(`HTTP error! status: ${response.status}`);
 			}
