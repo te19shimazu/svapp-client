@@ -142,6 +142,11 @@
 	<p>データを読み込んでいます...</p>
 {/if}
 
+<h2>User Info</h2>
+
+<p>User ID: {userId}</p>
+<p>Email: {email}</p>
+
 <form
 	method="POST"
 	action="?/enter"
