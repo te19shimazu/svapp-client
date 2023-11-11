@@ -79,6 +79,25 @@
 	}
 
 	import { onMount } from 'svelte';
+	let userId = '';
+	let email = '';
+
+	onMount(async () => {
+		const response = await fetch('https://svapp-server.hinaharu-0014.workers.dev/api/auth', {
+			method: 'GET',
+			headers: {
+				// ここで必要に応じて認証ヘッダーを設定します
+			}
+		});
+
+		if (response.ok) {
+			const data = await response.json();
+			userId = data.userId;
+			email = data.email;
+		} else {
+			console.error('Failed to fetch user info');
+		}
+	});
 
 	let posts: string | any[] = [];
 
