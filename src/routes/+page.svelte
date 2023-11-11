@@ -7,6 +7,7 @@
 <svelte:head>
 	<title>Home</title>
 	<meta name="description" content="Svelte demo app" />
+	<meta name="google-site-verification" content="mLMbMFRzancQaJM0i8r5acdL8YHflcE34EVZ1gr9Khg" />
 </svelte:head>
 
 <section>
