@@ -6,7 +6,7 @@ CREATE TABLE Users (
 );
 
 CREATE TABLE AttendanceRecords (
-    record_id INT PRIMARY KEY,
+    record_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
     date DATE,
     time_in TIME,
@@ -15,7 +15,7 @@ CREATE TABLE AttendanceRecords (
 );
 
 CREATE TABLE WorkTimeManagement (
-    record_id INT PRIMARY KEY,
+    record_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT,
     date DATE,
     worked_hours DECIMAL(5, 2),
