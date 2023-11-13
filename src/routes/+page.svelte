@@ -2,6 +2,10 @@
 	import Counter from './Counter.svelte';
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
+	import Get from './Get.svelte';
+	import Delete from './Delete.svelte';
+	import Put from './Put.svelte';
+	import Post from './Post.svelte';
 </script>
 
 <svelte:head>
@@ -27,6 +31,10 @@
 	</h2>
 
 	<Counter />
+	<Get />
+	<Delete />
+	<Put />
+	<Post />
 </section>
 
 <style>
