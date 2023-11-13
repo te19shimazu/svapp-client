@@ -1,6 +1,5 @@
 <script>
 	import Login from './Login.svelte';
-	import Mypage from './Mypage.svelte';
 </script>
 
 <svelte:head>
