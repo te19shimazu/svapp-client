@@ -8,7 +8,8 @@
 		await signInWithPopup(auth, provider)
 			.then((res) => {
 				authStore.set({ ...$authStore, loggedIn: true, user: res.user });
-				goto('/mypage');
+        result = fetchUserEmail(res.user.email)
+				result.length === 0 ? goto('/block') : goto('/mypage');
 			})
 			.catch((e) => {
 				console.log(e);
@@ -19,3 +20,5 @@
 <div>
 	<button type="button" on:click={handleLoginWithGoogle}> Sign In with Google </button>
 </div>
+
+<a href="/block">blockPage</a>
