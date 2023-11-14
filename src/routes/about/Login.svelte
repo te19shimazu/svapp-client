@@ -3,13 +3,15 @@
 	import { auth, provider } from './firebase';
 	import { authStore } from './store';
 	import { goto } from '$app/navigation';
+	import { getUserByEmail } from '$lib/functions/user';
 
+	
 	async function handleLoginWithGoogle() {
 		await signInWithPopup(auth, provider)
 			.then((res) => {
 				authStore.set({ ...$authStore, loggedIn: true, user: res.user });
-        result = fetchUserEmail(res.user.email)
-				result.length === 0 ? goto('/block') : goto('/mypage');
+        const result = getUserByEmail(res.user.email);
+				result === null ? goto('/block') : goto('/mypage');
 			})
 			.catch((e) => {
 				console.log(e);
