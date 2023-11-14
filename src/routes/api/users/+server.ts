@@ -2,7 +2,8 @@ import type { RequestHandler } from "@sveltejs/kit";
 
 // ユーザーの取得 (Read)
 export const GET: RequestHandler = async ({ request, platform, params }) => {
-  const { id } = params;
+  const url = new URL(request.url);
+  const id = url.searchParams.get('id');
   if (!platform) {
     return new Response(JSON.stringify({ message: 'platform is undefined' }));
   }
