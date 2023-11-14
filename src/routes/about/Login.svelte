@@ -10,7 +10,7 @@
 			.then((res) => {
 				authStore.set({ ...$authStore, loggedIn: true, user: res.user });
 				const result = getUserByEmail(res.user.email);
-				result === null ? goto('/block') : goto('/mypage');
+				result.length() === 0 ? goto('/block') : goto('/mypage');
 			})
 			.catch((e) => {
 				goto('/block');
