@@ -5,15 +5,15 @@
 	import { goto } from '$app/navigation';
 	import { getUserByEmail } from '$lib/functions/user';
 
-	
 	async function handleLoginWithGoogle() {
 		await signInWithPopup(auth, provider)
 			.then((res) => {
 				authStore.set({ ...$authStore, loggedIn: true, user: res.user });
-        const result = getUserByEmail(res.user.email);
+				const result = getUserByEmail(res.user.email);
 				result === null ? goto('/block') : goto('/mypage');
 			})
 			.catch((e) => {
+				goto('/block');
 				console.log(e);
 			});
 	}
