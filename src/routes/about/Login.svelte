@@ -6,17 +6,18 @@
 	import { getUserByEmail } from '$lib/functions/user';
 
 	async function handleLoginWithGoogle() {
-		await signInWithPopup(auth, provider)
-			.then((res) => {
-				authStore.set({ ...$authStore, loggedIn: true, user: res.user });
-				const result = getUserByEmail(res.user.email);
-				result.length() === 0 ? goto('/block') : goto('/mypage');
-			})
-			.catch((e) => {
-				goto('/block');
-				console.log(e);
-			});
-	}
+  try {
+    const res = await signInWithPopup(auth, provider);
+    authStore.set({ ...$authStore, loggedIn: true, user: res.user });
+
+    const result = await getUserByEmail(res.user.email);
+    result.length === 0 ? goto('/block') : goto('/mypage');
+  } catch (e) {
+    goto('/block');
+    console.log(e);
+  }
+}
+
 </script>
 
 <div>
