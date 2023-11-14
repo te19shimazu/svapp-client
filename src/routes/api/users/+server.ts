@@ -3,13 +3,13 @@ import type { RequestHandler } from "@sveltejs/kit";
 // ユーザーの取得 (Read)
 export const GET: RequestHandler = async ({ request, platform, params }) => {
   const url = new URL(request.url);
-  const id = url.searchParams.get('id');
+  const email = url.searchParams.get('email');
   if (!platform) {
     return new Response(JSON.stringify({ message: 'platform is undefined' }));
   }
   const result = await platform.env.DB.prepare(
-    "SELECT * FROM users WHERE id = ?"
-  ).bind(id).all();
+    "SELECT * FROM users WHERE email = ?"
+  ).bind(email).all();
   return new Response(JSON.stringify(result));
 };
 
