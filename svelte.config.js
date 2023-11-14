@@ -15,7 +15,6 @@ const config = {
                 exclude: ['<all>']
             }
         })
-
     }
 };
 
