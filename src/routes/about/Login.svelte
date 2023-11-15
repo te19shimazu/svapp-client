@@ -17,7 +17,7 @@
 				const session_id = JSON.parse(sessionData).session_id;
         localStorage.setItem('session_id', session_id);
 				goto('/mypage');
-				sessionStorage.setItem('sessionId', session_id);
+				sessionStorage.setItem('session_id', session_id);
         console.log("session_id = " + session_id);
 			} else {
 				sessionStorage.clear();
