@@ -26,6 +26,7 @@
 			user = await response.json();
 			console.log("typeof = " + typeof(user));
 			console.log("user = " + user);
+			user = JSON.parse(user);
 		} else {
 			goto('/block');
 		}
