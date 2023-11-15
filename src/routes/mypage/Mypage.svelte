@@ -19,7 +19,6 @@
 
 	let user = null;
 	const sessionId = sessionStorage.getItem('sessionId');
-	console.log("get session id");
 	if (!sessionId) {
 		goto('/block');
 	} else {
