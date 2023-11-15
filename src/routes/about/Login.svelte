@@ -13,7 +13,9 @@
 			const result = await getUserByEmail(res.user.email);
 			if (result) {
 				const response = await saveUserToSession($authStore.user);
+        console.log("response = " + response);
 				const sessionData = await response.json();
+        console.log("sessionData = " + sessionData);
 				const session_id = sessionData.session_id;
         console.log("session_id１ = " + session_id);
 				await goto('/mypage');
