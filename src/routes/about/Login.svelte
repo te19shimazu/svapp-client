@@ -14,11 +14,11 @@
 			if (result) {
 				const response = await saveUserToSession($authStore.user);
 				const sessionData = await JSON.stringify(response.json());
-				const session_id = JSON.parse(sessionData).session_id;
-        localStorage.setItem('session_id', session_id);
+				const sessionId = JSON.parse(sessionData).sessionId;
+				localStorage.setItem('sessionId', sessionId);
 				goto('/mypage');
-				sessionStorage.setItem('session_id', session_id);
-        console.log("session_id = " + session_id);
+				sessionStorage.setItem('sessionId', sessionId);
+				console.log('sessionId = ' + sessionId);
 			} else {
 				sessionStorage.clear();
 				goto('/block');

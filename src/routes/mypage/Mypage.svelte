@@ -18,15 +18,14 @@
 	}
 
 	let user = null;
-	const session_id = localStorage.getItem('session_id');
-	console.log("session_id = " + session_id);
-	if (!session_id) {
+	const sessionId = localStorage.getItem('sessionId');
+	console.log('sessionId = ' + sessionId);
+	if (!sessionId) {
 		goto('/block');
 	} else {
-		user = getUserFromSession(session_id);
-		console.log("user = " + user);
+		user = getUserFromSession(sessionId);
+		console.log('user = ' + user);
 	}
-	
 </script>
 
 <h1>Login successed.</h1>
