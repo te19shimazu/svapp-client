@@ -3,7 +3,6 @@
 	import { getUserFromSession } from '$lib/functions/user';
 	import { auth } from '../about/firebase';
 	import { onMount } from 'svelte';
-	import { authStore } from '../about/store';
 
 	function handleLogout() {
 		auth.signOut();
@@ -19,6 +18,7 @@
 	}
 	let user = null;
 	const sessionId = sessionStorage.getItem('sessionId');
+	console.log(sessionId);
 	onMount(async () => {
 		if (sessionId) {
 			try {
@@ -27,8 +27,6 @@
 					const userDataString = await response.text(); // 最初のレスポンスをテキストとして取得
 					const userDataObject = JSON.parse(userDataString); // テキストをオブジェクトに変換
 					user = JSON.parse(userDataObject); // オブジェクトがまだ文字列の場合、もう一度解析
-					console.log('typeof = ' + typeof user); // これで "object" となるはず
-					console.log('user email = ' + user.email);
 				} else {
 					console.error('Failed to fetch user');
 				}
