@@ -21,14 +21,19 @@
 	let user = null;
 	const sessionId = sessionStorage.getItem('sessionId');
 	onMount(async () => {
-		if (sessionId) {
-			user = await getUserFromSession(sessionId);
-			console.log("typeof = " + typeof(user));
-			console.log("user = " + user);
-		} else {
-			goto('/block');
-		}
-	});
+  if (sessionId) {
+    const response = await getUserFromSession(sessionId);
+    if (response.ok) {
+      user = await response.json();
+      console.log("typeof = " + typeof(user));
+      console.log("user = " + user.email);
+    } else {
+      console.error('Failed to fetch user');
+    }
+  } else {
+    goto('/block');
+  }
+});
 </script>
 
 <h1>Login successed.</h1>

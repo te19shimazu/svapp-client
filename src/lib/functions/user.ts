@@ -30,8 +30,6 @@ export async function getUserFromSession(sessionId: string): Promise<Response> {
   const response = await fetch(`https://svapp-server.hinaharu-0014.workers.dev/api/session/${encodeURIComponent(sessionId)}`);
   console.log("response = " + response);
   console.log("responsetype = " + typeof response);
-  console.log("responsejson = " + JSON.stringify(response));
-  console.log("responsejson = " + JSON.stringify(response.json()));
   if (!response.ok) {
     throw new Error("Failed to get user from session");
   }
