@@ -24,7 +24,7 @@
 		getUserFromSession(sessionId)
 			.then((u) => (user = u))
 			.catch(() => goto('/block'));
-		console.log(user);
+		console.log(JSON.stringify(user));
 	} else {
 		goto('/block');
 	}
