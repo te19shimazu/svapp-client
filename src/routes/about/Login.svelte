@@ -12,12 +12,15 @@
 
 			const result = await getUserByEmail(res.user.email);
 			if (result) {
+        console.log("authStore.user = " + $authStore.user)
 				const response = await saveUserToSession($authStore.user);
+        console.log("response = " + response);
 				const sessionData = await response.json();
+        console.log("sessionData = " + sessionData);
 				const session_id = sessionData.session_id;
 				goto('/mypage');
 				sessionStorage.setItem('sessionId', session_id);
-        console.log(session_id);
+        console.log("session_id = " + session_id);
 			} else {
 				sessionStorage.clear();
 				goto('/block');
