@@ -26,19 +26,18 @@ export async function saveUserToSession(user: UserInfo): Promise<Response> {
   return response;
 }
 
-export async function getUserFromSession(sessionId: string): Promise<UserInfo> {
+export async function getUserFromSession(sessionId: string): Promise<JSON> {
   console.log(encodeURIComponent(sessionId));
-  console.log(await fetch(`https://svapp-server.hinaharu-0014.workers.dev/api/session/${encodeURIComponent(sessionId)}`));
+  console.log("fetch = " + await fetch(`https://svapp-server.hinaharu-0014.workers.dev/api/session/${encodeURIComponent(sessionId)}`));
   const response = await fetch(`https://svapp-server.hinaharu-0014.workers.dev/api/session/${encodeURIComponent(sessionId)}`)
-  console.log(response);
   try {
     const userData = await response.json();
-    console.log(userData);
+    console.log("userData = " + userData);
     return userData;
   }
   catch (error) {
     console.error(error);
-    return null as unknown as UserInfo;
+    return null as unknown as JSON;
   }
 }
 

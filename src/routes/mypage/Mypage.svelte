@@ -3,7 +3,6 @@
 	import { getUserFromSession } from '$lib/functions/user';
 	import { auth } from '../about/firebase';
 	import { authStore } from '../about/store';
-	import { UserInfo, getAdditionalUserInfo } from 'firebase/auth';
 
 	function handleLogout() {
 		auth.signOut();
