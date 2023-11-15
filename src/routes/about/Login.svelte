@@ -12,6 +12,7 @@
 
 			const result = await getUserByEmail(res.user.email);
 			if (result) {
+        console.log("user = " + $authStore.user);
 				const response = await saveUserToSession($authStore.user);
         console.log('response = ' + response);
         const responseJson = await response.json();
