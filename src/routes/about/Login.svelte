@@ -23,7 +23,6 @@
 			}
 		} catch (e) {
 			goto('/block');
-			console.log(e);
 			sessionStorage.clear();
 		}
 	}
