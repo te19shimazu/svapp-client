@@ -15,7 +15,6 @@
 				const response = await saveUserToSession($authStore.user);
         const responseJson = await response.json();
 				const sessionId = responseJson.sessionId;
-				localStorage.setItem('sessionId', sessionId);
 				goto('/mypage');
 				sessionStorage.setItem('sessionId', sessionId);
 			} else {
