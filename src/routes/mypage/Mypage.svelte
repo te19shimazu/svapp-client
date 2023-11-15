@@ -19,12 +19,12 @@
 
 	let user = null;
 	const sessionId = localStorage.getItem('sessionId');
-	console.log('sessionId = ' + sessionId);
-	if (!sessionId) {
-		goto('/block');
+	if (sessionId) {
+		getUserFromSession(sessionId)
+			.then((u) => (user = u))
+			.catch(() => goto('/block'));
 	} else {
-		user = getUserFromSession(sessionId);
-		console.log('user = ' + user);
+		goto('/block');
 	}
 </script>
 
