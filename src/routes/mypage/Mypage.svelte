@@ -17,7 +17,6 @@
 	function handleRecord() {
 		goto('/record');
 	}
-
 	let user = null;
 	const sessionId = sessionStorage.getItem('sessionId');
 	onMount(async () => {
@@ -25,9 +24,9 @@
 			try {
 				const response = await getUserFromSession(sessionId);
 				if (response.ok) {
-					const userDataString = await response.text(); // responseをテキストとして取得
-					const userData = JSON.parse(userDataString); // テキストをJSONオブジェクトに変換
-					user = userData;
+					const userDataString = await response.text(); // 最初のレスポンスをテキストとして取得
+					const userDataObject = JSON.parse(userDataString); // テキストをオブジェクトに変換
+					user = JSON.parse(userDataObject); // オブジェクトがまだ文字列の場合、もう一度解析
 					console.log('typeof = ' + typeof user); // これで "object" となるはず
 					console.log('user email = ' + user.email);
 				} else {
