@@ -28,7 +28,7 @@ export async function saveUserToSession(user: UserInfo): Promise<Response> {
 
 export async function getUserFromSession(sessionId: string): Promise<JSON> {
   console.log(encodeURIComponent(sessionId));
-  console.log("fetch = " + await fetch(`https://svapp-server.hinaharu-0014.workers.dev/api/session/${encodeURIComponent(sessionId)}`));
+  console.log("fetch = " + (JSON.stringify(await fetch(`https://svapp-server.hinaharu-0014.workers.dev/api/session/${encodeURIComponent(sessionId)}`))));
   const response = await fetch(`https://svapp-server.hinaharu-0014.workers.dev/api/session/${encodeURIComponent(sessionId)}`)
   try {
     const userData = await response.json();

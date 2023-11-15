@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { getUserFromSession } from '$lib/functions/user';
 	import { auth } from '../about/firebase';
+	import { onMount } from 'svelte';
 	import { authStore } from '../about/store';
 
 	function handleLogout() {
@@ -19,13 +20,14 @@
 
 	let user = null;
 	const sessionId = sessionStorage.getItem('sessionId');
-	if (sessionId) {
-		console.log("sessionId1 = " + sessionId);
-		user = getUserFromSession(sessionId);
-		console.log("user = " + JSON.stringify(user));
-	} else {
-		goto('/block');
-	}
+	onMount(async () => {
+		if (sessionId) {
+			user = await getUserFromSession(sessionId);
+			console.log(user);
+		} else {
+			goto('/block');
+		}
+	});
 </script>
 
 <h1>Login successed.</h1>
