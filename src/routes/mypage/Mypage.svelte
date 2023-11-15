@@ -22,8 +22,9 @@
 	if (!sessionId) {
 		goto('/block');
 	} else {
-		user =  getUserFromSession(sessionId);
+		user = getUserFromSession(sessionId);
 	}
+	
 </script>
 
 <h1>Login successed.</h1>

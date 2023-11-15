@@ -13,18 +13,18 @@
 			const result = await getUserByEmail(res.user.email);
 			if (result) {
 				const response = await saveUserToSession($authStore.user);
-        const sessionData = await response.json();
-        const session_id = sessionData.session_id;
-        sessionStorage.setItem('sessionId', session_id);
+				const sessionData = await response.json();
+				const session_id = sessionData.session_id;
 				goto('/mypage');
+				sessionStorage.setItem('sessionId', session_id);
 			} else {
-        sessionStorage.clear();
+				sessionStorage.clear();
 				goto('/block');
 			}
 		} catch (e) {
 			goto('/block');
 			console.log(e);
-      sessionStorage.clear();
+			sessionStorage.clear();
 		}
 	}
 </script>
