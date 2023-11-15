@@ -26,6 +26,7 @@
 				const response = await getUserFromSession(sessionId);
 				if (response.ok) {
 					const userData = await response.json();
+					console.log('userData = ' + userData);
 					user = userData;
 					console.log('typeof = ' + typeof user);
 					console.log('user = ' + user.email);
