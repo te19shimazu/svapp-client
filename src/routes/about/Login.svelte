@@ -15,10 +15,10 @@
 				const response = await saveUserToSession($authStore.user);
 				const sessionData = await response.json();
 				const session_id = sessionData.session_id;
-        console.log("session_id = " + session_id);
-				goto('/mypage');
+        console.log("session_id１ = " + session_id);
+				await goto('/mypage');
 				sessionStorage.setItem('sessionId', String(session_id));
-        console.log("session_id = " + session_id);
+        console.log("session_id２ = " + String(session_id));
 			} else {
 				sessionStorage.clear();
 				goto('/block');
