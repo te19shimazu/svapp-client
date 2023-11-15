@@ -3,6 +3,7 @@
 	import { getUserFromSession } from '$lib/functions/user';
 	import { auth } from '../about/firebase';
 	import { authStore } from '../about/store';
+	import { UserInfo, getAdditionalUserInfo } from 'firebase/auth';
 
 	function handleLogout() {
 		auth.signOut();
@@ -20,7 +21,7 @@
 	let user = null;
 	const sessionId = sessionStorage.getItem('sessionId');
 	if (sessionId) {
-		console.log("sessionId = " + sessionId);
+		console.log("sessionId1 = " + sessionId);
 		user = getUserFromSession(sessionId);
 		console.log("user = " + JSON.stringify(user));
 	} else {
