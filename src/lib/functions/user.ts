@@ -28,8 +28,14 @@ export async function saveUserToSession(user: UserInfo): Promise<Response> {
 
 export async function getUserFromSession(sessionId: string): Promise<UserInfo> {
   const response = await fetch(`https://svapp-server.hinaharu-0014.workers.dev/api/session/${encodeURIComponent(sessionId)}`);
-  const userData = await response.json();
-  return userData;
+  try {
+    const userData = await response.json();
+    return userData;
+  }
+  catch (error) {
+    console.error(error);
+    return null as unknown as UserInfo;
+  }
 }
 
 export async function deleteUserFromSession(sessionId: string): Promise<Response> {

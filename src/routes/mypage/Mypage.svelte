@@ -22,7 +22,7 @@
 	if (!sessionId) {
 		goto('/block');
 	} else {
-		user = getUserFromSession(sessionId);
+		user =  getUserFromSession(sessionId);
 	}
 </script>
 
@@ -32,7 +32,7 @@
 		<li>email: {user.email}</li>
 		<li>name: {user.displayName}</li>
 	</ul>
-	<button type="button" on:click={handleLogout}> Logout </button>
-	<button type="button" on:click={handlePunch}>出勤/退勤</button>
-	<button type="button" on:click={handleRecord}>勤怠履歴</button>
+	<button type="button" on:click={handleLogout}> ログアウト </button>
+	<button type="button" on:click={handlePunch}> 出勤/退勤 </button>
+	<button type="button" on:click={handleRecord}> 勤怠履歴 </button>
 {/if}
