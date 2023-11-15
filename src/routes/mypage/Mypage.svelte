@@ -20,11 +20,9 @@
 	let user = null;
 	const sessionId = sessionStorage.getItem('sessionId');
 	if (sessionId) {
-		console.log(sessionId);
-		getUserFromSession(sessionId)
-			.then((u) => (user = u))
-			.catch(() => goto('/block'));
-		console.log(JSON.stringify(user));
+		console.log("sessionId = " + sessionId);
+		user = getUserFromSession(sessionId);
+		console.log("user = " + JSON.stringify(user));
 	} else {
 		goto('/block');
 	}
