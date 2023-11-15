@@ -23,6 +23,7 @@
 		goto('/block');
 	} else {
 		user = getUserFromSession(sessionId);
+		console.log(user);
 	}
 	
 </script>
