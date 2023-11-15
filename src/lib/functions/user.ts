@@ -26,19 +26,13 @@ export async function saveUserToSession(user: UserInfo): Promise<Response> {
   return response;
 }
 
-export async function getUserFromSession(sessionId: string): Promise<JSON> {
-  console.log(encodeURIComponent(sessionId));
+export async function getUserFromSession(sessionId: string): Promise<Response> {
   const response = await fetch(`https://svapp-server.hinaharu-0014.workers.dev/api/session/${encodeURIComponent(sessionId)}`);
-  console.log(response);
-  try {
-    const userData = await response.json();
-    console.log("userData = " + typeof(userData));
-    return userData;
+  console.log("response = " + JSON.stringify(response));
+  if (!response.ok) {
+    throw new Error("Failed to get user from session");
   }
-  catch (error) {
-    console.error(error);
-    return null as unknown as JSON;
-  }
+  return response;
 }
 
 export async function deleteUserFromSession(sessionId: string): Promise<Response> {

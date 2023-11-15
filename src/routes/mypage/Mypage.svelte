@@ -18,11 +18,12 @@
 		goto('/record');
 	}
 
-	let user =  null;
+	let user = null;
 	const sessionId = sessionStorage.getItem('sessionId');
 	onMount(async () => {
 		if (sessionId) {
-			user = await getUserFromSession(sessionId);
+			const response = await getUserFromSession(sessionId);
+			user = await response.json();
 			console.log("typeof = " + typeof(user));
 			console.log("user = " + user);
 		} else {
