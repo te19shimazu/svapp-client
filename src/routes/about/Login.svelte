@@ -16,7 +16,7 @@
 				const response = await saveUserToSession($authStore.user);
         console.log("response = " + response);
 				const sessionData = await response.json();
-        console.log("sessionData = " + sessionData);
+        console.log("sessionData = " + JSON.stringify(sessionData));
 				const session_id = sessionData.session_id;
 				goto('/mypage');
 				sessionStorage.setItem('sessionId', session_id);
