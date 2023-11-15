@@ -19,6 +19,7 @@
 
 	let user = null;
 	const sessionId = sessionStorage.getItem('sessionId');
+	console.log("get session id");
 	if (!sessionId) {
 		goto('/block');
 	} else {
@@ -32,6 +33,7 @@
 	<ul>
 		<li>email: {user.email}</li>
 		<li>name: {user.displayName}</li>
+		<li>sessionId: {sessionId}</li>
 	</ul>
 	<button type="button" on:click={handleLogout}> ログアウト </button>
 	<button type="button" on:click={handlePunch}> 出勤/退勤 </button>
