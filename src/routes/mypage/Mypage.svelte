@@ -26,10 +26,9 @@
 				const response = await getUserFromSession(sessionId);
 				if (response.ok) {
 					const userData = await response.json();
-					console.log('userData = ' + userData);
-					user = userData;
+					user = userData; // この行でuserDataをuserにセット
 					console.log('typeof = ' + typeof user);
-					console.log('user = ' + user.email);
+					console.log('user email = ' + user.email);
 				} else {
 					console.error('Failed to fetch user');
 				}
