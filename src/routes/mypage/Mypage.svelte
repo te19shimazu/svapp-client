@@ -22,11 +22,9 @@
 	const sessionId = sessionStorage.getItem('sessionId');
 	onMount(async () => {
 		if (sessionId) {
-			const response = await getUserFromSession(sessionId);
-			user = await response.json();
+			user = await getUserFromSession(sessionId);
 			console.log("typeof = " + typeof(user));
 			console.log("user = " + user);
-			user = JSON.parse(user);
 		} else {
 			goto('/block');
 		}
