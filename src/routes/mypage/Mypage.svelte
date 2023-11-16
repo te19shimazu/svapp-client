@@ -18,13 +18,12 @@
 	}
 	let user = null;
 	const sessionId = sessionStorage.getItem('sessionId');
-	console.log(sessionId);
 	onMount(async () => {
 		if (sessionId) {
 			try {
 				const response = await getUserFromSession(sessionId);
 				if (response.ok) {
-					user = response.json();
+					user = await response.json();
 				} else {
 					console.error('Failed to fetch user');
 				}
