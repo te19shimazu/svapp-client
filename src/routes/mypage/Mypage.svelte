@@ -24,9 +24,7 @@
 			try {
 				const response = await getUserFromSession(sessionId);
 				if (response.ok) {
-					const userDataString = await response.text(); // 最初のレスポンスをテキストとして取得
-					const userDataObject = JSON.parse(userDataString); // テキストをオブジェクトに変換
-					user = JSON.parse(userDataObject); // オブジェクトがまだ文字列の場合、もう一度解析
+					user = response.json();
 				} else {
 					console.error('Failed to fetch user');
 				}
