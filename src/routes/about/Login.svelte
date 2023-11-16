@@ -3,21 +3,29 @@
 	import { auth, provider } from './firebase';
 	import { authStore } from './store';
 	import { goto } from '$app/navigation';
-	import { getUserByEmail } from '$lib/functions/user';
+	import { getUserByEmail, saveUserToSession } from '$lib/functions/user';
 
 	async function handleLoginWithGoogle() {
-  try {
-    const res = await signInWithPopup(auth, provider);
-    authStore.set({ ...$authStore, loggedIn: true, user: res.user });
+		try {
+			const res = await signInWithPopup(auth, provider);
+			authStore.set({ ...$authStore, loggedIn: true, user: res.user });
 
-    const result = await getUserByEmail(res.user.email);
-    result.length === 0 ? goto('/block') : goto('/mypage');
-  } catch (e) {
-    goto('/block');
-    console.log(e);
-  }
-}
-
+			const result = await getUserByEmail(res.user.email);
+			if (result) {
+				const response = await saveUserToSession($authStore.user);
+        const responseJson = await response.json();
+				const sessionId = responseJson.sessionId;
+				goto('/mypage');
+				sessionStorage.setItem('sessionId', sessionId);
+			} else {
+				sessionStorage.clear();
+				goto('/block');
+			}
+		} catch (e) {
+			goto('/block');
+			sessionStorage.clear();
+		}
+	}
 </script>
 
 <div>

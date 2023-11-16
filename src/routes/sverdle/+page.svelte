@@ -78,44 +78,6 @@
 			?.dispatchEvent(new MouseEvent('click', { cancelable: true }));
 	}
 
-	import { onMount } from 'svelte';
-	let userId = '';
-	let email = '';
-
-	onMount(async () => {
-		const response = await fetch('https://svapp-server.hinaharu-0014.workers.dev/api/auth', {
-			method: 'GET',
-			headers: {
-				// ここで必要に応じて認証ヘッダーを設定します
-			}
-		});
-
-		if (response.ok) {
-			const data = await response.json();
-			userId = data.userId;
-			email = data.email;
-		} else {
-			console.error('Failed to fetch user info');
-		}
-	});
-
-	let posts: string | any[] = [];
-
-	async function fetchData() {
-		try {
-			const response = await fetch(
-				'https://svapp-server.hinaharu-0014.workers.dev/api/posts/slug/comments'
-			);
-			if (!response.ok) {
-				throw new Error(`HTTP error! status: ${response.status}`);
-			}
-			posts = await response.json();
-		} catch (e) {
-			console.error('APIからのデータの取得に失敗しました: ', e);
-		}
-	}
-
-	onMount(fetchData);
 </script>
 
 <svelte:window on:keydown={keydown} />
@@ -126,26 +88,6 @@
 </svelte:head>
 
 <h1 class="visually-hidden">Sverdle</h1>
-
-{#if posts.length > 0}
-	<div>
-		{#each posts as post}
-			<div>
-				<h3>ID: {post.id}</h3>
-				<p>Author: {post.author}</p>
-				<p>Body: {post.body}</p>
-				<p>Post Slug: {post.post_slug}</p>
-			</div>
-		{/each}
-	</div>
-{:else}
-	<p>データを読み込んでいます...</p>
-{/if}
-
-<h2>User Info</h2>
-
-<p>User ID: {userId}</p>
-<p>Email: {email}</p>
 
 <form
 	method="POST"

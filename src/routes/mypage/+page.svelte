@@ -1,5 +1,5 @@
 <script>
-  import Mypage from "../about/Mypage.svelte";
+  import Mypage from "./Mypage.svelte";
 </script>
 
 <Mypage />
