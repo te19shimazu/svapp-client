@@ -18,7 +18,7 @@
 	}
 	let user = null;
 	const sessionId = sessionStorage.getItem('sessionId');
-	onMount(async () => {
+	async function fetchData() {
 		if (sessionId) {
 			try {
 				const response = await getUserFromSession(sessionId);
@@ -32,8 +32,8 @@
 			}
 		} else {
 			goto('/block');
-		}
-	});
+		}}
+		onMount(fetchData);
 </script>
 
 <h1>Login successed.</h1>
