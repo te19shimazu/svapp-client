@@ -1,10 +1,13 @@
 <script>
 	import { goto } from '$app/navigation';
 	import { getUserFromSession } from '$lib/functions/user';
+	import { deleteUserFromSession } from '../../lib/functions/user';
 	import { auth } from '../about/firebase';
 	import { onMount } from 'svelte';
 
+	const sessionId = sessionStorage.getItem('sessionId');
 	function handleLogout() {
+		
 		auth.signOut();
 		goto('/');
 	}
