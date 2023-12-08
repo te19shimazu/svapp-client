@@ -20,7 +20,6 @@
 		goto('/record');
 	}
 	let user = null;
-	const sessionId = sessionStorage.getItem('sessionId');
 	async function fetchData() {
 		if (sessionId) {
 			try {
