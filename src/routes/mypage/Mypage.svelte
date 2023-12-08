@@ -10,7 +10,7 @@
 	}
 
 	function handlePunch() {
-		goto('/punch');
+		goto('/punch'); //hogehoge
 	}
 
 	function handleRecord() {
