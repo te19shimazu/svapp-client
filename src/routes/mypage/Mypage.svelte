@@ -7,9 +7,9 @@
 
 	const sessionId = sessionStorage.getItem('sessionId');
 	function handleLogout() {
+		sessionStorage.clear();
 		auth.signOut();
 		goto('/');
-		deleteUserFromSession(sessionId);
 	}
 
 	function handlePunch() {
