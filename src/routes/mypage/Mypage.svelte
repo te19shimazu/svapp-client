@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { getUserFromSession } from '$lib/functions/user';
 	import { auth } from '../about/firebase';
+	import { sendPunchRequest } from '$lib/functions/punch';
 	import { onMount } from 'svelte';
 
 	function handleLogout() {
@@ -9,13 +10,19 @@
 		goto('/');
 	}
 
-	function handlePunch() {
-		goto('/punch');
+	async function handlePunch(sessionId) {
+		const res = await sendPunchRequest(sessionId);
+		if (res.ok) {
+			alert(res.status + 'しました：' + res.now);
+		} else {
+			alert('打刻に失敗しました');
+		}
 	}
 
 	function handleRecord() {
 		goto('/record');
 	}
+
 	let user = null;
 	const sessionId = sessionStorage.getItem('sessionId');
 	async function fetchData() {
@@ -32,8 +39,9 @@
 			}
 		} else {
 			goto('/block');
-		}}
-		onMount(fetchData);
+		}
+	}
+	onMount(fetchData);
 </script>
 
 <h1>Login successed.</h1>
@@ -44,6 +52,8 @@
 		<li>sessionId: {sessionId}</li>
 	</ul>
 	<button type="button" on:click={handleLogout}> ログアウト </button>
-	<button type="button" on:click={handlePunch}> 出勤/退勤 </button>
+	<button type="button" on:click={() => handlePunch(sessionStorage.getItem('sessionId'))}>
+		出勤/退勤
+	</button>
 	<button type="button" on:click={handleRecord}> 勤怠履歴 </button>
 {/if}
