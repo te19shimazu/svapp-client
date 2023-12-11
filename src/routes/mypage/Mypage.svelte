@@ -10,7 +10,8 @@
 		goto('/');
 	}
 
-	async function handlePunch(sessionId) {
+	async function handlePunch() {
+		const sessionId = sessionStorage.getItem('sessionId');
 		console.log(sessionId + 'を送信します');
 		const res = await getPunchStatus(sessionId);
 		console.log(res);
@@ -55,8 +56,6 @@
 		<li>sessionId: {sessionId}</li>
 	</ul>
 	<button type="button" on:click={handleLogout}> ログアウト </button>
-	<button type="button" on:click={() => handlePunch(sessionStorage.getItem('sessionId'))}>
-		出勤/退勤
-	</button>
+	<button type="button" on:click={handlePunch}> 出勤/退勤 </button>
 	<button type="button" on:click={handleRecord}> 勤怠履歴 </button>
 {/if}
