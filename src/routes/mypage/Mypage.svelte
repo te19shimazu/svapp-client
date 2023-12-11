@@ -12,6 +12,10 @@
 
 	async function handlePunch() {
 		const sessionId = sessionStorage.getItem('sessionId');
+		if (!sessionId) {
+			alert('セッションIDがありません');
+			return;
+		}
 		console.log(sessionId + 'を送信します');
 		const res = await getPunchStatus(sessionId);
 		console.log(res);
