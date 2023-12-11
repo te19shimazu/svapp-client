@@ -4,7 +4,10 @@
 	import { auth } from '../about/firebase';
 	import { onMount } from 'svelte';
 
+	const sessionId = sessionStorage.getItem('sessionId');
+
 	function handleLogout() {
+		sessionStorage.clear();
 		auth.signOut();
 		goto('/');
 	}
@@ -17,7 +20,6 @@
 		goto('/record');
 	}
 	let user = null;
-	const sessionId = sessionStorage.getItem('sessionId');
 	async function fetchData() {
 		if (sessionId) {
 			try {
