@@ -10,7 +10,7 @@ export async function sendPunchRequest(sessionId: string): Promise<{ ok: boolean
     body: JSON.stringify(body)
   });
   const c = await response.json();
-  if (!response.ok) {
+  if (!c.ok) {
     throw new Error(c.message);
   } else if (c.time_in) {
     return { ok: true, now: c.time_in, status: '出勤' };
