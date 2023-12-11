@@ -2,7 +2,7 @@
 	import { goto } from '$app/navigation';
 	import { getUserFromSession } from '$lib/functions/user';
 	import { auth } from '../about/firebase';
-	import { sendPunchRequest } from '$lib/functions/punch';
+	import { getPunchStatus } from '$lib/functions/punch';
 	import { onMount } from 'svelte';
 
 	function handleLogout() {
@@ -12,7 +12,7 @@
 
 	async function handlePunch(sessionId) {
 		console.log(sessionId + 'を送信します');
-		const res = await sendPunchRequest(sessionId);
+		const res = await getPunchStatus(sessionId);
 		console.log(res);
 		if (res.ok) {
 			alert(res.status + 'しました：' + res.now);
