@@ -11,12 +11,15 @@
 	}
 
 	async function handlePunch(sessionId) {
+		console.log(sessionId + 'を送信します');
 		const res = await sendPunchRequest(sessionId);
+		console.log(res);
 		if (res.ok) {
 			alert(res.status + 'しました：' + res.now);
 		} else {
 			alert('打刻に失敗しました');
 		}
+		console.log('打刻しました');
 	}
 
 	function handleRecord() {
