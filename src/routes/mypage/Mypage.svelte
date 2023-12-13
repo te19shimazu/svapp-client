@@ -17,6 +17,10 @@
 	function handleRecord() {
 		goto('/record');
 	}
+	function handleOwner() {
+		goto('./ownerpage');
+	}
+	
 	let user = null;
 	let sessionId = null;
 	async function fetchData() {
@@ -38,6 +42,34 @@
 		}
 	}
 	onMount(fetchData);
+	var url;
+	if(user != null){
+		console.log(user.email);
+		url= `https://svapp-server.hinaharu-0014.workers.dev/api/users/${user.email}`;
+	}
+    var data;
+	var role;
+	if(url){
+    	fetch(url)
+    	.then(response => {
+    	if (!response.ok) {
+    	  throw new Error('Network response was not ok');
+    	}
+    	return response.text();
+    	})
+    	.then(html => {
+    	console.log(html);
+    	var userdata = JSON.parse(html);
+    	// console.log(userdata.role);
+		role = userdata.role;
+		console.log(role);
+    	})
+    	.catch(error => {
+    	console.error('There was a problem with the fetch operation:', error);
+    	});
+	}else{
+		console.error('This is error.');
+	}
 </script>
 
 <h1>Login successed.</h1>
@@ -50,4 +82,7 @@
 	<button type="button" on:click={handleLogout}> ログアウト </button>
 	<button type="button" on:click={handlePunch}> 出勤/退勤 </button>
 	<button type="button" on:click={handleRecord}> 勤怠履歴 </button>
+{/if}
+{#if role == 'owner'}
+	<button type="button" on:click={handleOwner}>管理者ページ</button>
 {/if}
