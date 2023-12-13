@@ -28,7 +28,7 @@
 	}
 
 	function handleRecord() {
-		goto('/record');
+		goto('/records/1');
 	}
 
 	let user = null;
