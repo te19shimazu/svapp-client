@@ -5,7 +5,10 @@
 	import { getPunchStatus } from '$lib/functions/punch';
 	import { onMount } from 'svelte';
 
+	const sessionId = sessionStorage.getItem('sessionId');
+
 	function handleLogout() {
+		sessionStorage.clear();
 		auth.signOut();
 		goto('/');
 	}
@@ -29,8 +32,8 @@
 	}
 
 	let user = null;
-	const sessionId = sessionStorage.getItem('sessionId');
 	async function fetchData() {
+		const sessionId = sessionStorage.getItem('sessionId');
 		if (sessionId) {
 			try {
 				const response = await getUserFromSession(sessionId);
@@ -54,7 +57,6 @@
 	<ul>
 		<li>email: {user.email}</li>
 		<li>name: {user.displayName}</li>
-		<li>sessionId: {sessionId}</li>
 	</ul>
 	<button type="button" on:click={handleLogout}> ログアウト </button>
 	<button type="button" on:click={handlePunch}> 出勤/退勤 </button>
