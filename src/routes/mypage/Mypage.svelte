@@ -5,6 +5,7 @@
 	import { onMount } from 'svelte';
 
 	function handleLogout() {
+		sessionStorage.clear();
 		auth.signOut();
 		goto('/');
 	}
