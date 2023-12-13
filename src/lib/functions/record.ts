@@ -5,6 +5,6 @@ export async function getRecords(sessionId: string, page: number): Promise<Respo
   if (!page) {
     page = 1;
   }
-  const response = await fetch(`https://svapp-server.hinaharu-0014.workers.dev/api/records/${encodeURIComponent(sessionId)}?page=${page}`);
+  const response = await fetch(`https://svapp-server.hinaharu-0014.workers.dev/api/records/${encodeURIComponent(sessionId)}/${page}`);
   return response;
 }

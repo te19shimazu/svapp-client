@@ -4,24 +4,33 @@
 	import { derived } from 'svelte/store';
 	import { getRecords } from '$lib/functions/record';
 
-	let attendanceHistory = null;
+  let attendanceHistory = [];
+  let records = [];
+  let pageNumber;
 
-	onMount(async () => {
-		// ページ番号を取得するための派生ストアを作成
-		const pageNumber = derived(page, ($page) => {
-			// URLのクエリパラメータから 'page' パラメータを取得
-			const queryParam = $page.url.searchParams.get('page');
-			// パラメータが存在しない場合は1ページ目とする
-			return queryParam ? parseInt(queryParam, 10) : 1;
-		});
-		const sessionId = sessionStorage.getItem('sessionId');
-		if (!sessionId) {
-			alert('セッションIDがありません');
-			return;
-		}
-		const response = await getRecords(sessionId, Number(pageNumber));
-		attendanceHistory = await response.json();
-	});
+  // ページ番号を取得するための派生ストア
+  const pageNumberStore = derived(page, $page => {
+    const queryParam = $page.url.searchParams.get('page');
+    return queryParam ? parseInt(queryParam, 10) : 1;
+  });
+
+  // pageNumberStoreを購読して、ページ番号が変更されたときにレコードを取得
+  pageNumberStore.subscribe(async (value) => {
+    pageNumber = value;
+    
+    // セッションIDを取得
+    const sessionId = sessionStorage.getItem('sessionId');
+    if (!sessionId) {
+      alert('セッションIDがありません');
+      return;
+    }
+
+    // getRecordsを呼び出してレコードを取得
+    const response = await getRecords(sessionId, pageNumber);
+    attendanceHistory = await response.json();
+    records = attendanceHistory.records.results;
+  });
+  
 </script>
 
 <main>
@@ -35,15 +44,23 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each attendanceHistory.result as attendance}
+			{#each records as record}
 				<tr>
-					<td>{attendance.date}</td>
-					<td>{attendance.time_in}</td>
-					<td>{attendance.time_out}</td>
+          <td>{record.date}</td>
+					<td>{record.time_in}</td>
+					<td>{record.time_out}</td>
 				</tr>
 			{/each}
 		</tbody>
 	</table>
+  <div>
+    {#if pageNumber > 1}
+      <a href="/records?page={pageNumber - 1}">前へ</a>
+    {/if}
+  </div>
+  <div>
+    <a href="/records?page={pageNumber + 1}">次へ</a>
+  </div>
 </main>
 
 <style>
