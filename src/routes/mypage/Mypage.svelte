@@ -2,7 +2,9 @@
 	import { goto } from '$app/navigation';
 	import { getUserFromSession } from '$lib/functions/user';
 	import { auth } from '../about/firebase';
+	import { getPunchStatus } from '$lib/functions/punch';
 	import { onMount } from 'svelte';
+
 
 	function handleLogout() {
 		sessionStorage.clear();
@@ -10,12 +12,22 @@
 		goto('/');
 	}
 
-	function handlePunch() {
-		goto('/punch');
+	async function handlePunch() {
+		const sessionId = sessionStorage.getItem('sessionId');
+		if (!sessionId) {
+			alert('セッションIDがありません');
+			return;
+		}
+		const res = await getPunchStatus(sessionId);
+		if (res.ok) {
+			alert(res.status + 'しました：' + res.now);
+		} else {
+			alert('打刻に失敗しました');
+		}
 	}
 
 	function handleRecord() {
-		goto('/record');
+		goto('/records');
 	}
 	function handleOwner() {
 		goto('./ownerpage');

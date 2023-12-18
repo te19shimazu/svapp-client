@@ -10,8 +10,8 @@
 			const res = await signInWithPopup(auth, provider);
 			authStore.set({ ...$authStore, loggedIn: true, user: res.user });
 
-			const result = await getUserByEmail(res.user.email);
-			if (result) {
+			const user = await getUserByEmail(res.user.email);
+			if (user) {
 				const response = await saveUserToSession($authStore.user);
         const responseJson = await response.json();
 				const sessionId = responseJson.sessionId;
