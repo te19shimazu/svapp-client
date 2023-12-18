@@ -20,9 +20,9 @@
 	function handleOwner() {
 		goto('./ownerpage');
 	}
-	
 	let user = null;
 	let sessionId = null;
+	let role;
 	async function fetchData() {
 		sessionId = sessionStorage.getItem('sessionId');
 		console.log(sessionId);
@@ -31,6 +31,31 @@
 				const response = await getUserFromSession(sessionId);
 				if (response.ok) {
 					user = await response.json();
+					if (user != null) {
+						console.log(user.email);
+						var url = `https://svapp-server.hinaharu-0014.workers.dev/api/users/${user.email}`;
+						var data;
+
+						fetch(url)
+						.then(response => {
+							if (!response.ok) {
+								throw new Error('Network response was not ok');
+							}
+							return response.text();
+						})
+						.then(html => {
+							console.log(html);
+							var userdata = JSON.parse(html);
+							// console.log(userdata.role);
+							role = userdata.role;
+							console.log(role);
+						})
+						.catch(error => {
+								console.error('There was a problem with the fetch operation:', error);
+						});
+					}else{
+						console.log('User is null');
+					}
 				} else {
 					console.error('Failed to fetch user');
 				}
@@ -42,34 +67,6 @@
 		}
 	}
 	onMount(fetchData);
-	var url;
-	if(user != null){
-		console.log(user.email);
-		url= `https://svapp-server.hinaharu-0014.workers.dev/api/users/${user.email}`;
-	}
-    var data;
-	var role;
-	if(url){
-    	fetch(url)
-    	.then(response => {
-    	if (!response.ok) {
-    	  throw new Error('Network response was not ok');
-    	}
-    	return response.text();
-    	})
-    	.then(html => {
-    	console.log(html);
-    	var userdata = JSON.parse(html);
-    	// console.log(userdata.role);
-		role = userdata.role;
-		console.log(role);
-    	})
-    	.catch(error => {
-    	console.error('There was a problem with the fetch operation:', error);
-    	});
-	}else{
-		console.error('This is error.');
-	}
 </script>
 
 <h1>Login successed.</h1>
