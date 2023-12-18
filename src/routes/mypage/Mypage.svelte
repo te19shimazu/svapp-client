@@ -25,46 +25,39 @@
 	let role;
 	async function fetchData() {
 		sessionId = sessionStorage.getItem('sessionId');
-		console.log(sessionId);
-		if (sessionId) {
-			try {
-				const response = await getUserFromSession(sessionId);
-				if (response.ok) {
-					user = await response.json();
-					if (user != null) {
-						console.log(user.email);
-						var url = `https://svapp-server.hinaharu-0014.workers.dev/api/users/${user.email}`;
-						var data;
+		if(sessionId == null) goto('./block');
+		try {
+			const response = await getUserFromSession(sessionId);
+			if (response.ok) {
+				user = await response.json();
+				if (user != null) {
+					let url = `https://svapp-server.hinaharu-0014.workers.dev/api/users/${user.email}`;
+					let data;
 
-						fetch(url)
-						.then(response => {
-							if (!response.ok) {
-								throw new Error('Network response was not ok');
-							}
-							return response.text();
-						})
-						.then(html => {
-							console.log(html);
-							var userdata = JSON.parse(html);
-							// console.log(userdata.role);
-							role = userdata.role;
-							console.log(role);
-						})
-						.catch(error => {
-								console.error('There was a problem with the fetch operation:', error);
-						});
-					}else{
-						console.log('User is null');
-					}
-				} else {
-					console.error('Failed to fetch user');
+					fetch(url)
+					.then(response => {
+						if (!response.ok) {
+							throw new Error('Network response was not ok');
+						}
+						return response.text();
+					})
+					.then(html => {
+						let userdata = JSON.parse(html);
+						role = userdata.role;
+					})
+					.catch(error => {
+							console.error('There was a problem with the fetch operation:', error);
+					});
+				}else{
+					console.log('User is null');
 				}
-			} catch (error) {
-				console.error('Error during fetch: ', error);
+			} else {
+				console.error('Failed to fetch user');
 			}
-		} else {
-			goto('/block');
+		} catch (error) {
+			console.error('Error during fetch: ', error);
 		}
+		
 	}
 	onMount(fetchData);
 </script>
