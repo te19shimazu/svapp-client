@@ -80,8 +80,7 @@ pre {
 
 input,
 button {
-	font-size: inherit;
-	font-family: inherit;
+	background-color: orange;	
 }
 
 button:focus:not(:focus-visible) {
@@ -104,8 +103,4 @@ button:focus:not(:focus-visible) {
 	position: absolute;
 	width: 1px;
 	white-space: nowrap;
-}
-
-button {
-	background-color: orange;
 }
