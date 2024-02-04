@@ -80,7 +80,9 @@ pre {
 
 input,
 button {
-	background-color: orange;	
+	background-color: orange;
+	border-radius: 100vh;
+	font-size: 1.6em;
 }
 
 button:focus:not(:focus-visible) {
