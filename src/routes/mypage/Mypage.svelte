@@ -81,10 +81,21 @@
 		<li>name: {user.displayName}</li>
 		<li>sessionId: {sessionId}</li>
 	</ul>
+	<div>
 	<button type="button" on:click={handleLogout}> ログアウト </button>
 	<button type="button" on:click={handlePunch}> 出勤/退勤 </button>
 	<button type="button" on:click={handleRecord}> 勤怠履歴 </button>
-{/if}
+	</div>
+	{/if}
 {#if role == 'owner'}
 	<button type="button" on:click={handleOwner}>管理者ページ</button>
 {/if}
+<style>
+	div{
+		display:flex;
+		justify-content: space-between;
+	}
+	button {
+		margin:10px;
+	}
+</style>
