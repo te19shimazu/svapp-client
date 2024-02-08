@@ -37,9 +37,10 @@
 <main>
 	<h1>勤怠履歴</h1>
 	{#if salary}
-		<p>あなたの時給は{salary}円です。</p>
+		<p class="salaryprice">時給:{salary}円</p>
 	{/if}
-	<table>
+	<div class="tablepage">
+	<table border="2">
 		<thead>
 			<tr>
 				<th>日付</th>
@@ -57,6 +58,7 @@
 			{/each}
 		</tbody>
 	</table>
+	</div>
 	<div>
 		{#if pageNumber > 1}
 			<a href="/records?page={pageNumber - 1}">前へ</a>
@@ -69,4 +71,24 @@
 
 <style>
 	/* Add your custom styles here */
+.salaryprice{
+	font-size:20px;
+}
+.tablepage{
+	display: flex;
+	justify-content: center;
+}
+table{
+	background-color: pink;
+	font-size:30px;
+	margin: 100px;
+	width:800px;
+	border-collapse: collapse; border-color: rgb(0, 137, 190);
+}
+a{
+	background-color: skyblue;
+	padding: 10px;
+	border-radius: 5px;
+	color:white;
+}
 </style>
