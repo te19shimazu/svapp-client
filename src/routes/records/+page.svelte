@@ -61,11 +61,11 @@
 	</div>
 	<div>
 		{#if pageNumber > 1}
-			<a href="/records?page={pageNumber - 1}">前へ</a>
+			<a class="smbutton" href="/records?page={pageNumber - 1}">前へ</a>
 		{/if}
 	</div>
 	<div>
-		<a href="/records?page={pageNumber + 1}">次へ</a>
+		<a class="smbutton" href="/records?page={pageNumber + 1}">次へ</a>
 	</div>
 </main>
 
@@ -84,11 +84,5 @@ table{
 	margin: 100px;
 	width:800px;
 	border-collapse: collapse; border-color: rgb(0, 137, 190);
-}
-a{
-	background-color: skyblue;
-	padding: 10px;
-	border-radius: 5px;
-	color:blue;
 }
 </style>

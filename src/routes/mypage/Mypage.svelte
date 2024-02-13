@@ -97,22 +97,6 @@
 		display:flex;
 		justify-content: space-between;
 	}
-	button {
-		margin:10px;
-		font-family:sans-serif;
-		font-weight:bold;
-		color:white;
-		padding:10px 15px;
-		border-width: 0px;
-		transform: translate(-2px,-2px);
-		filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2));
-		transition: all 0.1s;
-	}
-	button:hover{
-		transform: none;
-		filter: none;
-		box-shadow: inset 3px 3px 4px rgba(0,0,0,0.2);
-	}
 	.ownerbutton{
 		justify-content: center;
 		display:flex;
