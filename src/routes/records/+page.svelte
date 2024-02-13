@@ -59,12 +59,12 @@
 		</tbody>
 	</table>
 	</div>
-	<div>
 		{#if pageNumber > 1}
+		<div class="bluebutton">
 			<a class="smbutton" href="/records?page={pageNumber - 1}">前へ</a>
+		</div>
 		{/if}
-	</div>
-	<div>
+	<div class="bluebutton">
 		<a class="smbutton" href="/records?page={pageNumber + 1}">次へ</a>
 	</div>
 </main>

@@ -31,8 +31,9 @@
 <div>
 	<button type="button" on:click={handleLoginWithGoogle}> Sign In with Google </button>
 </div>
-
+<div class="bluebutton">
 <a href="/block">blockPage</a>
+</div>
 <style>
 a{
 	background-color: skyblue;

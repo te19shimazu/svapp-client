@@ -120,7 +120,24 @@ button:hover{
 	filter: none;
 	box-shadow: inset 3px 3px 4px rgba(0,0,0,0.2);
 }
+button:active{
+	transform: none;
+	filter: none;
+	box-shadow:inset 7px 7px 8px rgba(0,0,0,0.2);
+}
 .smbutton{
-	background-color:rgb(100, 100, 255);
+	background-color:skyblue;
 
+}
+.bluebutton{
+	display: flex;
+	justify-content:center;
+	margin:100px;
+	background-color: skyblue;
+	padding: 10px;
+	border-radius: 10px;
+	color:blue;
+	width: 100px;
+	font-weight:bold;
+	font-family: sans-serif;
 }
