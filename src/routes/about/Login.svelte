@@ -33,3 +33,11 @@
 </div>
 
 <a href="/block">blockPage</a>
+<style>
+a{
+	background-color: skyblue;
+	padding: 10px;
+	border-radius: 5px;
+	color:blue;
+}
+</style>

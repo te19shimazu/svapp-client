@@ -7,11 +7,18 @@
 	<meta name="description" content="About this app" />
 </svelte:head>
 
-<div class="text-column">
+<div>
 	<h1>Userページ</h1>
 
 	<Login />
-	<p>
-		<a href="/mypage">mypage</a>
-	</p>
+	<a href="/mypage">mypage</a>
 </div>
+<style>
+a{
+	background-color: skyblue;
+	padding: 10px;
+	border-radius: 5px;
+	color:blue;
+	font-family: sans-serif;
+}
+</style>

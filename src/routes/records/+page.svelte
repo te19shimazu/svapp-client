@@ -89,6 +89,6 @@ a{
 	background-color: skyblue;
 	padding: 10px;
 	border-radius: 5px;
-	color:white;
+	color:blue;
 }
 </style>
