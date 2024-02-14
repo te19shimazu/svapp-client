@@ -76,17 +76,12 @@
 
 <h1>Login successed.</h1>
 {#if user != null}
-	<ul>
-		<li>email: {user.email}</li>
-		<li>name: {user.displayName}</li>
-		<li>sessionId: {sessionId}</li>
-	</ul>
-	<div>
-	<button type="button" on:click={handleLogout}> ログアウト </button>
-	<button type="button" on:click={handlePunch}> 出勤/退勤 </button>
-	<button type="button" on:click={handleRecord}> 勤怠履歴 </button>
-	</div>
-	{/if}
+<div>
+<button type="button" on:click={handleLogout}> ログアウト </button>
+<button type="button" on:click={handlePunch}> 出勤/退勤 </button>
+<button type="button" on:click={handleRecord}> 勤怠履歴 </button>
+</div>
+{/if}
 {#if role == 'owner'}
 <div class="ownerbutton">
 	<button type="button" on:click={handleOwner} class="ownerpage">管理者ページ</button>
