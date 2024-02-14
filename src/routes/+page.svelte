@@ -9,9 +9,5 @@
 
 <div>
 	<h1>Userページ</h1>
-	<Login />
-	<div class="blue-button">
-	<a href="/mypage">mypage</a>
-	</div>
+	<center><Login /></center>
 </div>
-<style></style>

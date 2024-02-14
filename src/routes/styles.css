@@ -77,7 +77,7 @@ pre {
 	justify-content: center;
 	margin: 0 auto;
 }
-input, button {
+button {
 	background-color: orange;
 	border-radius: 100vh;
 	font-size: 1.6em;
