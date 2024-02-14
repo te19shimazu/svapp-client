@@ -10,7 +10,7 @@
 <div>
 	<h1>Userページ</h1>
 	<Login />
-	<div class="bluebutton">
+	<div class="blue-button">
 	<a href="/mypage">mypage</a>
 	</div>
 </div>
