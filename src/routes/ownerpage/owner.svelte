@@ -12,6 +12,9 @@
 	function handleAdd(){
 		console.log('User add');
 	}
+	function handleMypage(){
+		goto('../mypage');
+	}
 </script>
 <center>
 <h1>congratulation!!!</h1>
@@ -19,3 +22,4 @@
 </center>
 <button type="button" on:click={handleLogout}> ログアウト </button>
 <button type="button" on:click={handleAdd}>ユーザー追加</button>
+<button type="button" on:click={handleMypage}>マイページ</button>
