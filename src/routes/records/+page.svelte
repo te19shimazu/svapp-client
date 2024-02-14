@@ -80,7 +80,7 @@
 }
 table{
 	background-color: pink;
-	font-size:30px;
+	font-size: 24px;
 	margin: 100px;
 	width:800px;
 	border-collapse: collapse; border-color: rgb(0, 137, 190);
