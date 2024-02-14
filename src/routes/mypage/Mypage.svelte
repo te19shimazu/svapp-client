@@ -103,7 +103,7 @@
 	}
 	.ownerpage{
 		width:200px;
-		height:150px;
-		border-radius:10%;
+		height:100px;
+		border-radius:30px;
 	}
 </style>
