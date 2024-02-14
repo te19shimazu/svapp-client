@@ -20,6 +20,14 @@
 <h1>congratulation!!!</h1>
 <h3>Login successed!</h3>
 </center>
+<div>
 <button type="button" on:click={handleLogout}> ログアウト </button>
 <button type="button" on:click={handleAdd}>ユーザー追加</button>
 <button type="button" on:click={handleMypage}>マイページ</button>
+</div>
+<style>
+div{
+	display: flex;
+	justify-content: space-around;
+}
+</style>
