@@ -1,7 +1,7 @@
 <script>
 	import { goto } from '$app/navigation';
 	import { getUserFromSession } from '$lib/functions/user';
-	import { auth } from '../about/firebase';
+	import { auth } from '../firebase';
 	import { getPunchStatus } from '$lib/functions/punch';
 	import { onMount } from 'svelte';
 

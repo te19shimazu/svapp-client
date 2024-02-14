@@ -1,7 +1,7 @@
 <script>
 	import { goto } from '$app/navigation';
-	import { auth } from '../about/firebase';
-	import { authStore } from '../about/store';
+	import { auth } from '../firebase';
+	import { authStore } from '../store';
 
 	function handlePunch() {
 		goto('/punch');
